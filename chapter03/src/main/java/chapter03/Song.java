@@ -11,8 +11,10 @@ public class Song {
     private int track;
 
     public Song(String title, String artist) {
-        this.title = title;
-        this.artist = artist;
+//        this.title = title;
+//        this.artist = artist;
+        // 생성자 역할
+        this(title, artist, "", "", 0, 0);
     }
 
     public Song(String title, String artist, String album, String composer, int year, int track) {

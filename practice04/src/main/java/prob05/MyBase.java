@@ -8,7 +8,7 @@ public class MyBase extends Base {
         } else if(state.equals("밤")) {
             night();
         } else {
-            System.out.println("오후도 낮과 마찬가지로 일해야 합니다.");
+            afternoon();
         }
     }
 
@@ -21,4 +21,9 @@ public class MyBase extends Base {
     public void night() {
         super.night();
     }
+
+    public void afternoon() {
+        System.out.println("오후도 낮과 마찬가지로 일해야 합니다.");
+    }
 }
+
