@@ -9,7 +9,7 @@ public class ExceptionTest {
 
         System.out.println(" Some Code1...");
 
-        try {
+        try { // 예외가 발생할 가능성이 있는 실행문
             System.out.println(" Some Code2...");
             System.out.println(" Some Code3...");
 
@@ -18,8 +18,9 @@ public class ExceptionTest {
             System.out.println(" Some Code4...");
             System.out.println(" Some Code5...");
 
-        } catch (ArithmeticException e) {
+        } catch (ArithmeticException e) { // 처리할 예외 타입 선언
             /* 예외 처리 */
+            /* 예외 발생 시에만 실행 */
             /* 비워두면 안됨 */
             // e.printStackTrace();
             // 1. 로깅
@@ -33,6 +34,7 @@ public class ExceptionTest {
             return;
         } finally {
             // 자원 정리는 맨 아래에 하는 것이 일반적이다.
+            // 예외 발생 여부와 상관없이 무조건 실행되는 문장 (생략 가능)
             System.out.println("자원 정리: ex) close file, socket, db connection");
         }
 
