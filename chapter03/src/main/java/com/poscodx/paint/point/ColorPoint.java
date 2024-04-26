@@ -1,4 +1,4 @@
-package paint;
+package com.poscodx.paint.point;
 
 public class ColorPoint extends Point {
     // 상속 후 아무것도 없을 때 에러나는 이유
