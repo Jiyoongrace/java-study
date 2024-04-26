@@ -10,6 +10,10 @@ public class ObjectTest03 {
 //        hashCode()는 오버라이딩이 가능하지만 identityHashCode()는 재정의가 불가능하다.
 //        String 클래스의 hashcode는 value가 동일할 때 같다.
         // System 클래스에서 정의되는 identityHashCode()
+        // String 클래스는 hashCode가 오버라이딩 되어 있으며
+        // 객체가 달라도 hashCode() 값이 같게 나오도록 구현되어 있다.
+        // 그러나 identityHashCode() 값은 다르게 출력된다.
+
 
         System.out.println(s1 == s2); // false
         System.out.println(s1.equals(s2)); // true

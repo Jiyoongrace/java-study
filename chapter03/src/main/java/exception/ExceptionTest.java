@@ -1,6 +1,4 @@
-package Exception;
-
-import java.io.Console;
+package exception;
 
 public class ExceptionTest {
     public static void main(String[] args) {

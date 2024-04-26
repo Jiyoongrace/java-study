@@ -13,5 +13,4 @@ public abstract class Bird {
 
 	abstract public void fly();
 	abstract public void sing();
-	abstract public String toString();
 }
