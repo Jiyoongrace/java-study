@@ -8,7 +8,7 @@ public class MyClass {
         System.out.println("some code2...");
 
         if(2 - 2 == 0) {
-            throw new MyException();
+            throw new MyException(); // 강제로 예외 발생
         }
 
         if(1 - 1 == 0) {
