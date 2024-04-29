@@ -23,11 +23,11 @@
 1. Chain of Responsibility
 2. Command
 3. Interpreter
-4. Interator *
+4. **Interator** *
 > 일련의 데이터 집합에 대하여 순차적인 접근(순회)을 지원하는 패턴
-<>
+<img width="570" height="260" src="https://github.com/Jiyoongrace/java-study/assets/88182667/844f8589-0a1b-47e6-ac65-133d3877db20">
 
-`사용 시기`
+> `사용 시기`
 - 컬렉션에 상관없이 객체 접근 순회 방식을 통일하고자 할 때
 - 컬렉션을 순회하는 다양한 방법을 지원하고 싶을 때
 - 컬렉션의 복잡한 내부 구조를 클라이언트로 부터 숨기고 싶은 경우 (편의 + 보안)
