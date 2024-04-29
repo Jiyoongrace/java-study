@@ -3,7 +3,7 @@
 
 #### Creational
 1. Singleton *
-![](C:\Users\BIT\IdeaProjects\java-study\designpattern-practices\src\main\resources\[UML] 싱글톤 패턴.PNG)
+<img width="250" height="120" src="C:\Users\BIT\IdeaProjects\java-study\designpattern-practices\src\main\resources\[UML] 싱글톤 패턴.PNG" />
 2. Factory Method *
 3. Abstarct Factory
 4. Builder *
