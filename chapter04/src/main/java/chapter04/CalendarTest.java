@@ -17,15 +17,34 @@ public class CalendarTest {
 
         // now
         printDate(calendar);
+
+        calendar.set(Calendar.YEAR, 2024);
+        calendar.set(Calendar.MONTH, 11); // 12월(Month - 1)
+        calendar.set(Calendar.DATE, 25);
+        printDate(calendar);
+
+        calendar.set(2000, 9, 6);
+        calendar.add(Calendar.DATE, 300);
+        printDate(calendar);
     }
 
     public static void printDate(Calendar calendar) {
-        System.out.println(calendar.get(Calendar.YEAR) + " " +
-                (calendar.get(Calendar.MONTH) + 1) + " " + // 0
-                calendar.get(Calendar.DATE) + " " +
-                (calendar.get(Calendar.AM_PM) == 0 ? " " : " ") +
-                calendar.get(Calendar.HOUR) + " " +
-                calendar.get(Calendar.MINUTE) + " " +
-                calendar.get(Calendar.SECOND) + " ");
+        final String[] DAYS = {"일", "월", "화", "수", "목", "금", "토"};
+
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH); // 0 ~ 11, +1
+        int date = calendar.get(Calendar.DATE);
+        int day = calendar.get(Calendar.DAY_OF_WEEK); // 1(일) ~ 7(토)
+        int hour = calendar.get(Calendar.HOUR);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
+        System.out.println(year + "년 " +
+                (month + 1) + "월 " +
+                date + "일 " +
+                DAYS[day - 1] + "요일 " +
+                hour + "시 " +
+                minute + "분 " +
+                second + "초");
     }
 }
