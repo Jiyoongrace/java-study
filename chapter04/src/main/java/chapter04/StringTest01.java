@@ -14,5 +14,9 @@ public class StringTest01 {
         // \b: beep
         System.out.print("hello\tworld\n");
         System.out.println("hello\tworld");
+
+        // '
+        char c = '\'';
+        System.out.println(c);
     }
 }
