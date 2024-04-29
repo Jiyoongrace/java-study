@@ -5,8 +5,10 @@
 1. **Singleton** *
 > 클래스의 인스턴스, 즉 객체를 하나만 만들어 사용하는 패턴
 <img width="250" height="130" src="https://github.com/Jiyoongrace/java-study/assets/88182667/4bc40277-ea88-4270-a6c4-744f68b08157" />
+
 - 인스턴스를 하나만 만들어 사용하기위한 패턴 (커넥션 풀, 스레드 풀, 디바이스 설정 등)
 - 주로 서버와 Socket Connection, DB JDBC Connetion, 스프링의 Bean 등에 많이 활용
+
 > `싱글턴 패턴 만들기 과정`
 > - new를 실행할 수 없도록 생성자에 private 접근 제어자를 지정한다.
 > - 유일한 단일 객체를 반환할 수 있는 정적 메서드가 필요하다.
