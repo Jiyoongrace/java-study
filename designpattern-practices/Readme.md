@@ -53,7 +53,7 @@
 - B가 핵심 기능을 담당하고 C가 부가 기능을 담당한다.
 - C는 B를 주입받아 B에게 핵심 기능을 위임하고
 - 자신은 부가 기능에 대해 처리한다.
-<img width="570" height="260" src="">
+<img width="570" height="260" src="https://github.com/Jiyoongrace/java-study/assets/88182667/db0e30cb-7dae-4507-88e0-75727139e48b">
 
 5. Facade *
 6. Flyweight
