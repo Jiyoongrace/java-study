@@ -11,7 +11,7 @@ public class FileCopy {
             is = new FileInputStream("google.jpg");
             os = new FileOutputStream("copy.jpg");
 
-            int data = is.read();
+            int data = -1;
             while((data=is.read()) != -1) {
                 os.write(data);
             }

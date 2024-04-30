@@ -18,12 +18,21 @@ public class FileReaderTest {
                 System.out.print((char)data);
                 count++;
             }
+
             System.out.println("");
             System.out.println("count: " + count);
             System.out.println("========================");
 
             count = 0;
             data = -1;
+
+            while((data = is.read()) != -1) {
+                System.out.print((char)data);
+                count++;
+            }
+
+            System.out.println("");
+            System.out.println("count: " + count);
 
         } catch (FileNotFoundException e) {
             System.out.print("file not found: " + e);
