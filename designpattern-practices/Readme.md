@@ -47,7 +47,14 @@
 1. Adapter *
 2. Bridge
 3. Composite
-4. Decorator *
+4. **Decorator** *
+> 데코레이터 패턴은 말 그대로 어떤 오브젝트에 대해 데코레이션 하듯이 기능을 추가해주는 것이다.
+- A라는 인터페이스가 있고 B, C 라는 구현체가 있다면
+- B가 핵심 기능을 담당하고 C가 부가 기능을 담당한다.
+- C는 B를 주입받아 B에게 핵심 기능을 위임하고
+- 자신은 부가 기능에 대해 처리한다.
+<img width="570" height="260" src="">
+
 5. Facade *
 6. Flyweight
 7. Proxy *
