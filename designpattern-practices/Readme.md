@@ -25,6 +25,7 @@
 3. Interpreter
 4. **Iterator** *
 > 일련의 데이터 집합에 대하여 순차적인 접근(순회)을 지원하는 패턴
+
 <img width="570" height="260" src="https://github.com/Jiyoongrace/java-study/assets/88182667/844f8589-0a1b-47e6-ac65-133d3877db20">
 
 `사용 시기`
