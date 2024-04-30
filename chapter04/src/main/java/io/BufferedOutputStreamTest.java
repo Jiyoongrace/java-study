@@ -13,7 +13,7 @@ public class BufferedOutputStreamTest {
             // 기반 스트림(주 스트림)
             FileOutputStream fos = new FileOutputStream("hello.txt");
 
-            // 보조 스트림 (데코레이터 패턴과 함께 이해하기)
+            // 보조 스트림(데코레이터 패턴과 함께 이해하기)
             bos = new BufferedOutputStream(fos);
 
             // for(int i = 'a'; i<= 'z'; i++)
