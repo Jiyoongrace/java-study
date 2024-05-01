@@ -8,9 +8,9 @@ public class LocalHost {
     public static void main(String[] args) {
         try {
             // localhost <-> remote host
-            InetAddress inetAddress = InetAddress.getLocalHost();
-            String hostName = inetAddress.getHostName();
-            String hostIpAddress = inetAddress.getHostAddress();
+            InetAddress inetAddress = InetAddress.getLocalHost(); // DESKTOP-CQPKAEH/192.168.0.126
+            String hostName = inetAddress.getHostName(); // DESKTOP-CQPKAEH
+            String hostIpAddress = inetAddress.getHostAddress(); // 192.168.0.126
 
             System.out.println(inetAddress);
             System.out.println(hostName);
@@ -18,8 +18,8 @@ public class LocalHost {
 
             byte[] IpAddresses = inetAddress.getAddress(); // original 4 byte
             for(byte IpAddress : IpAddresses) {
-                System.out.println(IpAddress);
-                // System.out.println(IpAddress & 0x000000ff);
+                // System.out.println(IpAddress);
+                System.out.println(IpAddress & 0x000000ff);
             }
 
         } catch (UnknownHostException e) {
