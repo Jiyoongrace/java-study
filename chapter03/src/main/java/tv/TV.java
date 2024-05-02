@@ -1,30 +1,12 @@
 package tv;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor
 public class TV {
     private int channel; // 1~255
     private int volume; // 0~100
     private boolean power;
-
-    public TV() {
-    }
-
-    public TV(int channel, int volume, boolean power) {
-        this.channel = channel;
-        this.volume = volume;
-        this.power = power;
-    }
-
-    public int getChannel() {
-        return channel;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public boolean isPower() {
-        return power;
-    }
 
     public void power(boolean on) {
         if (on) {
