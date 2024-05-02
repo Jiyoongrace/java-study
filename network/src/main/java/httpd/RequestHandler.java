@@ -30,9 +30,9 @@ public class RequestHandler extends Thread {
 				String line = br.readLine();
 
 				// 브라우저에서 연결을 끊으면...
-                if(line == null) {
-                    break;
-                }
+				if(line == null) {
+					break;
+				}
 
 				// SimpleHttpServer는 HTTP Header만 처리
 				if("".equals(line)) {
