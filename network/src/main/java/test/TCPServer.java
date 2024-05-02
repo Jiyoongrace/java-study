@@ -40,6 +40,7 @@ public class TCPServer {
                 OutputStream os = socket.getOutputStream();
 
                 while(true) {
+                    System.out.println("try to read");
                     // 5. 데이터 읽기
                     byte[] buffer = new byte[256];
                     int readByteCount = is.read(buffer); // blocking
@@ -59,7 +60,7 @@ public class TCPServer {
                 // C:\poscodx2024\java-study\network\target\classes>java test.TCPServer
 
             } catch (SocketException e) {
-                System.out.println("[server] suddenly closed by client");
+                System.out.println("[server] Socket Exception " + e);
             } catch (IOException e) {
                 System.out.println("[server] error: " + e);
             } finally {

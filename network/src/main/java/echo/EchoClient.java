@@ -30,13 +30,13 @@ public class EchoClient {
                 pw.println(line);
                 String data = br.readLine(); // blocking
                 if(data == null) {
-                    log("suddenly closed by server");
+                    log("closed by server");
                     break;
                 }
                 System.out.println("<< " + data);
             }
         } catch (SocketException e) {
-            log("suddenly closed by client");
+            log("Socket Exception : " + e);
         } catch (IOException e) {
             log("error: " + e);
         } finally {
