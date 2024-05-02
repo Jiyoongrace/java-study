@@ -44,13 +44,13 @@ public class TCPClient {
         } catch (IOException e) {
             System.out.println("[client] error: " + e);
         } finally {
-//            try {
-//                if (socket != null && !socket.isClosed()) {
-//                    socket.close();
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                if (socket != null && !socket.isClosed()) {
+                    socket.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

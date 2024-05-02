@@ -34,7 +34,7 @@ public class SimpleHttpServer {
 		} finally {
 			// 5. 자원정리
 			try {
-				if (serverSocket != null && serverSocket.isClosed()) {
+				if (serverSocket != null && !serverSocket.isClosed()) {
 					serverSocket.close();
 				}
 			} catch (IOException ex) {

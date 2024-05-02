@@ -7,7 +7,7 @@ import java.net.SocketException;
 import java.util.Scanner;
 
 public class EchoClient {
-    private static final String SERVER_PORT = "127.0.0.1";
+    private static final String SERVER_IP = "127.0.0.1";
     public static void main(String[] args) {
         Scanner scanner = null;
         Socket socket = null;
@@ -15,7 +15,7 @@ public class EchoClient {
             scanner = new Scanner(System.in);
             socket = new Socket();
 
-            socket.connect(new InetSocketAddress(SERVER_PORT, EchoServer.PORT));
+            socket.connect(new InetSocketAddress(SERVER_IP, EchoServer.PORT));
 
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
