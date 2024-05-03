@@ -7,6 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
+import java.util.Base64;
 
 public class ChatWindow {
 
@@ -78,12 +79,17 @@ public class ChatWindow {
 			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
             String message = textField.getText();
 
-			String request = "message: " + message + "\r\n";
+			// Base64 인코딩
+			String encodedString = Base64.getEncoder().encodeToString(message.getBytes("utf-8"));
+
+			String request = "message: " + encodedString + "\r\n";
 			pw.println(request);
 
 			// 보내고 메세지 비우기
 			textField.setText("");
 			textField.requestFocus();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

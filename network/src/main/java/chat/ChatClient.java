@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class ChatClient {
@@ -46,14 +47,17 @@ public class ChatClient {
             while(true) {
                 System.out.print(">> ");
                 String input = scanner.nextLine();
-                if("quit".equals(input)) {
+                String encodedString = Base64.getEncoder().encodeToString(input.getBytes("utf-8"));
+                String q = Base64.getEncoder().encodeToString(("quit").getBytes("utf-8"));
+
+                if(q.equals(encodedString)) {
                     // 8. quit protocol
-                    pw.println(input);
+                    pw.println(encodedString);
                     pw.flush();
                     break;
                 } else {
                     // 9. message protocol
-                    pw.println("message: " + input);
+                    pw.println("message: " + encodedString);
                     pw.flush();
                 }
             }
@@ -64,7 +68,9 @@ public class ChatClient {
             log("error: " + e);
         } finally {
             try {
-                scanner.close();
+                if(scanner != null) {
+                    scanner.close();
+                }
                 if (socket != null && !socket.isClosed()) {
                     socket.close();
                 }

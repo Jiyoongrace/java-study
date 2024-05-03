@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ChatServer {
 
     public static final int PORT = 7000;

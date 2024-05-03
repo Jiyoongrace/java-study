@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Base64;
 import java.util.List;
 
 public class ChatServerThread extends Thread {
@@ -46,7 +47,7 @@ public class ChatServerThread extends Thread {
                 if("join".equals(tokens[0])) {
                     doJoin(tokens[1], pw);
                 } else if("message".equals(tokens[0])) {
-                    doMessage(tokens[1]);
+                    doMessage(new String(tokens[1]));
                 } else if("quit".equals(tokens[0])) {
                     doQuit(pw);
                     break;
@@ -99,7 +100,22 @@ public class ChatServerThread extends Thread {
     }
 
     private void doMessage(String message) {
-        String data = nickname + ": " + message;
+        String cleanedString = message.replace(" ", "").replace(":", "");
+        String decodedString = null;
+        try {
+            decodedString = new String(Base64.getDecoder().decode(cleanedString), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+//        try {
+//            decodedString = new String(decodedBytes, StandardCharsets.UTF_8);
+//            // System.out.println(decodedString);
+//        } catch (IllegalArgumentException e) {
+//            System.out.println("올바른 base64 문자열이 아닙니다.");
+//        }
+
+        String data = nickname + ": " + decodedString;
         broadcast(data);
     }
 
