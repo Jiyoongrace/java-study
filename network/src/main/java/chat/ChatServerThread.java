@@ -10,9 +10,9 @@ public class ChatServerThread extends Thread {
 
     private String nickname;
     private Socket socket;
-    List<Writer> listWriters;
+    List<PrintWriter> listWriters;
 
-    public ChatServerThread(Socket socket, List<Writer> listWriters) {
+    public ChatServerThread(Socket socket, List<PrintWriter> listWriters) {
         this.socket = socket;
         this.listWriters = listWriters;
     }
@@ -32,36 +32,32 @@ public class ChatServerThread extends Thread {
             pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
             br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
 
-            String request = null;
             // 3. Request
             while(true) {
-                request = br.readLine();// blocking
+                String request = br.readLine();// blocking
                 if(request == null) {
-                    ChatServer.log("closed by client");
+                    ChatServer.log("클라이언트로 부터 연결 끊김");
                     doQuit(pw);
                     break;
                 }
-                ChatServer.log("received: " + request);
-                pw.println(request);
+
+                // 4. Protocol
+                String[] tokens = request.split(":");
+                if("join".equals(tokens[0])) {
+                    doJoin(tokens[1], pw);
+                } else if("message".equals(tokens[0])) {
+                    doMessage(tokens[1]);
+                } else if("quit".equals(tokens[0])) {
+                    doQuit(pw);
+                    break;
+                }
             }
-
-            // 4. Protocol
-            String[] tokens = request.split(":");
-
-            if("join".equals(tokens[0])) {
-                doJoin(tokens[1], pw);
-            } else if("message".equals(tokens[0])) {
-                doMessage(tokens[1]);
-            } else if("quit".equals(tokens[0])) {
-                doQuit(pw);
-            } else {
-                ChatServer.log("error: 알 수 없는 요청( " + tokens[0] + ")");
-            }
-
 
         } catch (SocketException e) {
-            ChatServer.log("Socket Exception: " + e);
+            doQuit(pw);
+            ChatServer.log("abnormal closed by client");
         } catch (IOException e) {
+            doQuit(pw);
             ChatServer.log("error: " + e);
         } finally {
             try {
@@ -69,28 +65,26 @@ public class ChatServerThread extends Thread {
                     socket.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                ChatServer.log("error: " + e);
             }
         }
     }
 
-    public void doJoin(String nickname, Writer writer) {
+    public void doJoin(String nickname, PrintWriter pw) {
         this.nickname = nickname;
 
         String data = nickname + "님이 참여하였습니다.";
         broadcast(data);
         /* save: write pool */
-        addWriter(writer);
+        addWriter(pw);
 
         // ack
-        PrintWriter pw = new PrintWriter(writer);
         pw.println("join:ok");
-        pw.flush();
     }
 
     public void addWriter(Writer writer) {
         synchronized (listWriters) {
-            listWriters.add(writer);
+            listWriters.add((PrintWriter) writer);
         }
     }
 
@@ -105,15 +99,17 @@ public class ChatServerThread extends Thread {
     }
 
     private void doMessage(String message) {
-        String data = "message: " + "[" + nickname + "]" + message + "\r\n";
+        String data = nickname + ": " + message;
         broadcast(data);
     }
 
     private void doQuit(Writer writer) {
         removeWriter(writer);
 
-        String data = nickname + "님이 퇴장하였습니다.";
-        broadcast(data);
+        if(nickname!= null) {
+            String data = nickname + "님이 퇴장하였습니다.";
+            broadcast(data);
+        }
     }
 
     private void removeWriter(Writer writer) {

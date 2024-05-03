@@ -1,27 +1,36 @@
 package chat;
 
 import java.io.BufferedReader;
-import java.io.Writer;
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.SocketException;
 
 public class ChatClientThread extends Thread {
-    private BufferedReader bufferedReader;
-    List<Writer> listWriters;
+    private Socket socket;
 
-    public ChatClientThread(BufferedReader bufferedReader) {
-        this.bufferedReader = bufferedReader;
+    public ChatClientThread( Socket socket ) {
+        this.socket = socket;
     }
 
     @Override
     public void run() {
-        /* print the message at the console from the bufferedReader */
         try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+            String message = null;
             while (true) {
-                String message = bufferedReader.readLine();
-                System.out.println(message);
+                message = br.readLine();
+                if (message == null) {
+                    break;
+                }
+                ChatClient.log(message);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SocketException e) {
+            ChatClient.log("퇴장하셨습니다.");
+        } catch (IOException e) {
+            ChatClient.log("IOException : " + e);
+        } finally {
+            System.exit(0);
         }
     }
 }

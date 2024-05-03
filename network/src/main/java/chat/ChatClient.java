@@ -29,11 +29,17 @@ public class ChatClient {
             // 5. join protocol
             System.out.print("닉네임 >> ");
             String nickname = scanner.nextLine();
-            pw.println("join: " + nickname);
-            pw.flush();
+            log(nickname + "님이 채팅방에 입장하였습니다.");
+            String request = "join:" + nickname;
+            pw.println(request);
+
+            String ack = br.readLine();
+            if("join:ok".equals(ack)) {
+                System.out.println("입장하였습니다. 즐거운 채팅 되세요!");
+            }
 
             // 6. ChatClientReceiveThread Start
-            ChatClientThread chatClientThread = new ChatClientThread(br);
+            ChatClientThread chatClientThread = new ChatClientThread(socket);
             chatClientThread.start();
 
             // 8. keyboard
@@ -42,7 +48,7 @@ public class ChatClient {
                 String input = scanner.nextLine();
                 if("quit".equals(input)) {
                     // 8. quit protocol
-                    pw.println("quit: " + nickname);
+                    pw.println(input);
                     pw.flush();
                     break;
                 } else {
@@ -69,6 +75,6 @@ public class ChatClient {
     }
 
     public static void log(String message) {
-        System.out.println("[ChatClient] : " + message);
+        System.out.println(message);
     }
 }

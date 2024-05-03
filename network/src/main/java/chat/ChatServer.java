@@ -1,7 +1,7 @@
 package chat;
 
 import java.io.IOException;
-import java.io.Writer;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -13,14 +13,16 @@ public class ChatServer {
 
     public static final int PORT = 7000;
     public static void main(String[] args) {
+
         ServerSocket serverSocket = null;
+        List<PrintWriter> listWriters = new ArrayList<PrintWriter>();
 
         try {
+            serverSocket = new ServerSocket();
+
             InetAddress inetAddress = InetAddress.getLocalHost();
             String hostAddress = inetAddress.getHostAddress();
-            serverSocket = new ServerSocket();
             serverSocket.bind(new InetSocketAddress(hostAddress, PORT));
-            List<Writer> listWriters = new ArrayList<Writer>();
             log("연결 기다림 " + hostAddress + ":" + PORT);
 
             while(true) {
@@ -29,7 +31,8 @@ public class ChatServer {
             }
 
         } catch (IOException e) {
-            log("error: " + e);
+            // log("error: " + e);
+            e.printStackTrace();
         } finally {
             try {
                 if(serverSocket != null && !serverSocket.isClosed()) {
@@ -42,6 +45,6 @@ public class ChatServer {
     }
 
     public static void log(String message) {
-        System.out.println("[ChatServer] : " + message);
+        System.out.println("[ChatServer] " + Thread.currentThread().getId() + message);
     }
 }
