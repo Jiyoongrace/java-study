@@ -1,29 +1,23 @@
 package test;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
-import java.util.Base64.Decoder;
-import java.util.Base64.Encoder;
 
 public class Base64Test {
+    public static void main(String[] args) {
+        try {
+            String originalInput = "안녕하세요";
+            System.out.println("original: " + originalInput);
 
-    public static void main(String[] args)  {
-        base64();
-    }
+            String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes("utf-8"));
+            System.out.println("Encoded: " + encodedString);
 
-    public static void base64() {
-        String text = "ktko";
-        byte[] targetBytes = text.getBytes();
+            String decodedString = new String(Base64.getDecoder().decode(encodedString), "utf-8");
+            System.out.println("decoded: " + decodedString);
 
-        // Base64 인코딩
-        Encoder encoder = Base64.getEncoder();
-        byte[] encodedBytes = encoder.encode(targetBytes);
 
-        // Base64 디코딩
-        Decoder decoder = Base64.getDecoder();
-        byte[] decodedBytes = decoder.decode(encodedBytes);
-
-        System.out.println("인코딩 전 : " + text);
-        System.out.println("인코딩 text : " + new String(encodedBytes));
-        System.out.println("디코딩 text : " + new String(decodedBytes));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }
