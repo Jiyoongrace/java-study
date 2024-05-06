@@ -79,6 +79,10 @@ public class ChatWindow {
 			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
             String message = textField.getText();
 
+			if("quit".equals(message)) {
+				finish();
+			}
+
 			// Base64 인코딩
 			String encodedString = Base64.getEncoder().encodeToString(message.getBytes("utf-8"));
 
