@@ -38,6 +38,8 @@
 5. Mediator
 6. Mementor
 7. Observer *
+<img width="570" height="260" src="https://github.com/Jiyoongrace/java-study/assets/88182667/79e3e566-bcd7-44ec-bef3-25ea02aad10b">
+
 8. State
 9. Strategy *
 10. Template Method *
