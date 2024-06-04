@@ -2,6 +2,7 @@ package behavioral.templatemethod;
 
 import java.util.Scanner;
 
+@SuppressWarnings("resource")
 public abstract class AbstractCalculate {
     public void templateMethod() {
         Scanner scanner = new Scanner(System.in);
